@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{CA2C0188-1CCF-0DCB-607F-E1ECC14B245E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ECSScripts\Entity.cs" />
+    <Compile Include="Assets\ECSScripts\IComponent.cs" />
+    <Compile Include="Assets\ECSScripts\ISystem.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyExplosion.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyHealth.cs" />
