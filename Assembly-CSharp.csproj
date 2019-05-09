@@ -62,8 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ECSScripts\Entity.cs" />
-    <Compile Include="Assets\ECSScripts\IComponent.cs" />
-    <Compile Include="Assets\ECSScripts\ISystem.cs" />
+    <Compile Include="Assets\ECSScripts\Component\IComponent.cs" />
+    <Compile Include="Assets\ECSScripts\System\ISystem.cs" />
+    <Compile Include="Assets\ECSScripts\Util\Common.cs" />
+    <Compile Include="Assets\ECSScripts\Util\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyExplosion.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyHealth.cs" />
@@ -674,6 +676,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
