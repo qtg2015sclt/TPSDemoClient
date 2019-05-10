@@ -61,10 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ECSScripts\Entity.cs" />
+    <Compile Include="Assets\ECSScripts\Component\Character\AnimationComponent.cs" />
+    <Compile Include="Assets\ECSScripts\Component\Character\DamageableComponent.cs" />
+    <Compile Include="Assets\ECSScripts\Component\Character\MoveComponent.cs" />
+    <Compile Include="Assets\ECSScripts\Entity\Entity.cs" />
     <Compile Include="Assets\ECSScripts\Component\IComponent.cs" />
     <Compile Include="Assets\ECSScripts\System\ISystem.cs" />
     <Compile Include="Assets\ECSScripts\Util\Common.cs" />
+    <Compile Include="Assets\ECSScripts\Util\GlobalInstance.cs" />
     <Compile Include="Assets\ECSScripts\Util\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Abandoned\EnemyExplosion.cs" />

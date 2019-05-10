@@ -35,7 +35,7 @@ public class WorldManager : MonoBehaviour
 
     private void Start()
     {
-        // sort system with id(level)
+        // sort system with id/level
         m_system_dict = m_system_dict.OrderBy(kvp => kvp.Key).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
         foreach (var system in m_system_dict.Values)
@@ -50,7 +50,7 @@ public class WorldManager : MonoBehaviour
 
         foreach (var system in m_system_dict.Values)
         {
-            ExecuteUpdate();
+            ExecuteUpdate(system.UpdateEntity, system.SystemID);
         }
     }
 
@@ -60,7 +60,7 @@ public class WorldManager : MonoBehaviour
 
         foreach (var system in m_system_dict.Values)
         {
-            ExecuteUpdate();
+            ExecuteUpdate(system.FixedUpdateEntity, system.SystemID);
         }
     }
 
@@ -70,7 +70,7 @@ public class WorldManager : MonoBehaviour
 
         foreach (var system in m_system_dict.Values)
         {
-            ExecuteUpdate();
+            ExecuteUpdate(system.LateUpdateEntity, system.SystemID);
         }
     }
 
@@ -86,10 +86,20 @@ public class WorldManager : MonoBehaviour
 
     private static void UpdateEntityDict()
     {
+        while (m_entity_add_queue.Count > 0)
+        {
+            Entity entity = m_entity_add_queue.Dequeue();
+            DoAddEntity(entity);
+        }
 
+        while (m_entity_remove_queue.Count > 0)
+        {
+            Entity entity = m_entity_remove_queue.Dequeue();
+            DoRemoveEntity(entity);
+        }
     }
 
-    public static void DoAddEntity(Entity entity)
+    private static void DoAddEntity(Entity entity)
     {
         if (!m_entity_dict.ContainsKey(entity.EntityID))
         {
@@ -102,7 +112,7 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    public static void DoRemoveEntity(Entity entity)
+    private static void DoRemoveEntity(Entity entity)
     {
         Debug.Log("Entity Removed " + entity.EntityID);
 
@@ -140,8 +150,28 @@ public class WorldManager : MonoBehaviour
         return m_system_count++;
     }
 
-    // TODO: match when add instead of every frame
-    public static bool MatchComponents(Entity entity, params Type[] components)
+    
+
+    public static void ExecuteUpdate(UpdateFunc func, int system_id)
+    {
+        foreach (var entity_id in m_system_entity_match_dict[system_id])
+        {
+            func(EntityDict[entity_id]);
+        }
+    }
+
+    public static void MatchEntity(Entity entity)
+    {
+        foreach (var system in m_system_dict.Values)
+        {
+            if (MatchComponents(entity, system.GetAttachedComponents()))
+            {
+                m_system_entity_match_dict[system.SystemID].Add(entity.EntityID);
+            }
+        }
+    }
+
+    private static bool MatchComponents(Entity entity, params Type[] components)
     {
         foreach (var elem in components)
         {
@@ -151,18 +181,11 @@ public class WorldManager : MonoBehaviour
         return true;
     }
 
-    public static void ExecuteUpdate()
-    {
-
-    }
-
-    public static void MatchEntity(Entity entity)
-    {
-
-    }
-
     private static void RemoveEntityMatch(Entity entity)
     {
-
+        foreach(var system in m_system_dict.Values)
+        {
+            m_system_entity_match_dict[system.SystemID].Remove(entity.EntityID);
+        }
     }
 }

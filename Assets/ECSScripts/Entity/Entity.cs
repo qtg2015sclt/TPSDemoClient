@@ -14,12 +14,14 @@ public class Entity : MonoBehaviour
     {
         if (-1 == EntityID)
         {
-            //EntityID;
+            EntityID = WorldManager.GenerateEntityID();
         }
+
+        WorldManager.AddEntity(this);
     }
 
     private void OnDestroy()
     {
-        
+        WorldManager.RemoveEntity(this);
     }
 }
