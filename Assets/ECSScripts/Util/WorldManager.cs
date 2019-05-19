@@ -150,8 +150,6 @@ public class WorldManager : MonoBehaviour
         return m_system_count++;
     }
 
-    
-
     public static void ExecuteUpdate(UpdateFunc func, int system_id)
     {
         foreach (var entity_id in m_system_entity_match_dict[system_id])
