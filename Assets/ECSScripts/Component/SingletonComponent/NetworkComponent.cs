@@ -17,4 +17,9 @@ public class NetworkComponent : IComponent
     public StreamWriter SocketWriter;
 
     public Queue<string> SendMsgQ = new Queue<string>();
+
+    private void Awake()
+    {
+        GlobalInstance._Network = this;
+    }
 }
