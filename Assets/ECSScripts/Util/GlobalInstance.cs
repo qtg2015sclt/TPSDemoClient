@@ -7,6 +7,8 @@ public static class GlobalInstance
 
     public static NetworkComponent _Network;
 
+    public static MsgDispatchComponent _Dispatcher;
+
     private static Entity m_main_player = null;
     public static Entity _MainPlayer
     {

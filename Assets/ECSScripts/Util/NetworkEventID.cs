@@ -11,6 +11,13 @@ using System.Threading.Tasks;
 //    }
 //}
 // Network send event id
+
+static class NCommonEID
+{
+    public const int LoginSID = 1000;
+    public const int LoginMsgSendCID = 1001;
+}
+
 static class NSendEID
 {
     public const int LoginSID = 1000;

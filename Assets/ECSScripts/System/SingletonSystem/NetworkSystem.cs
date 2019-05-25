@@ -41,6 +41,28 @@ public class NetworkSystem : ISystem
             _network.SocketWriter.Write(network_msg_data);
             _network.SocketWriter.Flush();
         }
+
+        string msg = ReadSocket();
+        if ("" != msg)
+            MsgDispatchHelper.Dispatch(msg);
+    }
+
+    private String ReadSocket()
+    {
+        NetworkComponent _network = GlobalInstance._Network;
+        if (!_network.SocketReady)
+        {
+            Debug.Log("Socket is not ready.");
+            return "";
+        }
+
+        if (_network.NetworkStream.DataAvailable)
+        {
+            return _network.SocketReader.ReadLine();
+        }
+
+        //Debug.Log("No Data.");
+        return "";
     }
 
     private void SetupSocket()
