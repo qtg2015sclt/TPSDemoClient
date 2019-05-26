@@ -44,18 +44,36 @@ public class LoginService : IService
     private void HandleLoginReturnMsg(string msg)
     {
         LocalAuthMsg local_auth_msg = JsonUtility.FromJson<LocalAuthMsg>(msg);
-        if (1 == local_auth_msg.UserID)
+        if (local_auth_msg.UserID > 0)
         {
             Debug.Log("Login Success!");
         }
         else if (-1 == local_auth_msg.UserID)
         {
-            Debug.Log("Login Failed!");
+            Debug.Log("Login Failed! No such user.");
+        }
+    }
+
+    private void HandleRegisterReturnMsg(string msg)
+    {
+        LocalAuthMsg local_auth_msg = JsonUtility.FromJson<LocalAuthMsg>(msg);
+        if (local_auth_msg.UserID > 0)
+        {
+            Debug.Log("Register Success!");
+        }
+        else if (-1 == local_auth_msg.UserID)
+        {
+            Debug.Log("Register Failed!");
+        }
+        else if (0 == local_auth_msg.UserID)
+        {
+            Debug.Log("Cannot use the user name, this user name exist.");
         }
     }
 
     protected override void Register()
     {
-        Commands.Add(NCommonEID.LoginMsgSendCID, HandleLoginReturnMsg);
+        Commands.Add(NCommonEID.LoginMsgCID, HandleLoginReturnMsg);
+        Commands.Add(NCommonEID.RegisterMsgCID, HandleRegisterReturnMsg);
     }
 }

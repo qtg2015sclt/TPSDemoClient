@@ -18,12 +18,18 @@ public class LoginController : MonoBehaviour
             Password = PasswordIF.text
         };
         NetworkHelper.SendData(msg.ToJson());
-        //LocalAuthMsg msg = new LocalAuthMsg()
-        //{
-        //    UserName = AccountIF.text,
-        //    Password = PasswordIF.text
-        //};
+    }
 
-        //NetworkHelper.SendData<LocalAuthMsg>(NSendEID.LoginSID, NSendEID.LoginMsgSendCID, msg);
+    public void RegisterBtnOnClick()
+    {
+        Debug.Log("RegisterBtnOnClick");
+        LocalAuthMsg msg = new LocalAuthMsg()
+        {
+            SID = NCommonEID.LoginSID,
+            CID = NCommonEID.RegisterMsgCID,
+            UserName = AccountIF.text,
+            Password = PasswordIF.text
+        };
+        NetworkHelper.SendData(msg.ToJson());
     }
 }

@@ -15,7 +15,8 @@ using System.Threading.Tasks;
 static class NCommonEID
 {
     public const int LoginSID = 1000;
-    public const int LoginMsgSendCID = 1001;
+    public const int LoginMsgCID = 1001;
+    public const int RegisterMsgCID = 1002;
 }
 
 static class NSendEID
