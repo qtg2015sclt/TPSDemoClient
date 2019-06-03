@@ -9,7 +9,7 @@ public class NetworkHelper
 {
     public static void SendData(string msg)
     {
-        GlobalInstance._Network.SendMsgQ.Enqueue(msg);
+        GlobalInstance._Network.SendMsgQ.Enqueue(msg + "\n");
     }
     //public static void SendData<T>(int service_id, int command_ID, T msg_need_write)
     //{

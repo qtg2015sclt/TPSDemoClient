@@ -34,6 +34,7 @@ public class NetworkSystem : ISystem
         while (_network.SendMsgQ.Count > 0)
         {
             string network_msg_data = _network.SendMsgQ.Dequeue();
+            Debug.Log("Network System: " + network_msg_data);
             if (!_network.SocketReady)
                 return;
 
@@ -44,7 +45,10 @@ public class NetworkSystem : ISystem
 
         string msg = ReadSocket();
         if ("" != msg)
+        {
+            Debug.Log("NetworkSystem UpdateEntity: msg = " + msg);
             MsgDispatchHelper.Dispatch(msg);
+        }
     }
 
     private String ReadSocket()

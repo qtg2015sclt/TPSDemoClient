@@ -48,9 +48,13 @@ public class LoginService : IService
         {
             Debug.Log("Login Success!");
         }
-        else if (-1 == local_auth_msg.UserID)
+        else if (0 == local_auth_msg.UserID)
         {
             Debug.Log("Login Failed! No such user.");
+        }
+        else if (-1 == local_auth_msg.UserID)
+        {
+            Debug.Log("Login Failed! Unknown problem.");
         }
     }
 
