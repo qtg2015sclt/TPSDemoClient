@@ -47,6 +47,13 @@ public class LoginService : IService
         if (local_auth_msg.UserID > 0)
         {
             Debug.Log("Login Success!");
+            string username = local_auth_msg.UserName;
+            string password = local_auth_msg.Password;
+
+            // Store
+            Debug.Log("store: " + username + ", " + password);
+            PlayerPrefs.SetString(Constants.username, username);
+            PlayerPrefs.SetString(Constants.password, password);
         }
         else if (0 == local_auth_msg.UserID)
         {

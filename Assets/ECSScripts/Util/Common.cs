@@ -9,3 +9,10 @@ public enum GameState
 }
 
 public delegate void UpdateFunc(Entity entity);
+
+static class Constants
+{
+    public const string userid = "userid";
+    public const string username = "username";
+    public const string password = "password";
+}
