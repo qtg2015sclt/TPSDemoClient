@@ -27,7 +27,7 @@ public class NetworkMsg : object
 
 public class LocalAuthMsg: NetworkMsg
 {
-    public int UserID;
+    public long UserID;
     public string UserName;
     public string Password;
 }

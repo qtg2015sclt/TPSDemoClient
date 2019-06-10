@@ -43,7 +43,9 @@ public class LoginService : IService
 
     private void HandleLoginReturnMsg(string msg)
     {
+        //Debug.Log("LoginService HandleLoginReturnMsg");
         LocalAuthMsg local_auth_msg = JsonUtility.FromJson<LocalAuthMsg>(msg);
+        //Debug.Log("userid = " + local_auth_msg.UserID);
         if (local_auth_msg.UserID > 0)
         {
             Debug.Log("Login Success!");
